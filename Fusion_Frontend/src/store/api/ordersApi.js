@@ -1,0 +1,67 @@
+import { baseApi } from "./baseAPI";
+
+export const ordersApi = baseApi.injectEndpoints({
+    endpoints: (builder) => ({
+        getOrders: builder.query({
+            query: (userId = "") => ({
+                url: "/OrderHeader",
+                params: userId ? { userId } : {}
+            }),
+            providesTags: ["Order"],
+            transformResponse: (response) => {
+                if (response && response.result && Array.isArray(response.result)) {
+                    return response.result;
+                }
+                if (response && Array.isArray(response)) {
+                    return response;
+                }
+                return [];
+            }
+        }),
+
+        getOrderById: builder.query({
+            query: (id) => `/OrderHeader/${id}`,
+            providesTags: (result, error, { id }) => [{ type: "Order", id }],
+            transformResponse: (response) => {
+                if (response && response.result) {
+                    return response.result;
+                }
+                return response;
+            },
+        }),
+
+        createOrder: builder.mutation({
+            query: (formData) => ({
+                url: "/OrderHeader",
+                method: "POST",
+                body: formData,
+            }),
+            invalidatesTags: ["Order"],
+        }),
+
+        deleteOrder: builder.mutation({
+            query: (id) => ({
+                url: `/OrderHeader?id=${id}`,
+                method: "DELETE",
+            }),
+            invalidatesTags: ["Order"],
+        }),
+
+        updateOrder: builder.mutation({
+            query: ({ orderId, orderData }) => ({
+                url: `/OrderHeader/${orderId}`,
+                method: "PUT",
+                body: orderData,
+            }),
+            invalidatesTags: (result, error, { orderId }) => [{ type: "Order", id:orderId }],
+        })
+
+    })
+});
+
+export const { 
+    useGetOrdersQuery,
+    useGetOrderByIdQuery,
+    useCreateOrderMutation,
+    useDeleteOrderMutation,
+    useUpdateOrderMutation } = ordersApi;

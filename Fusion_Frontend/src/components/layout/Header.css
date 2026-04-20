@@ -1,0 +1,157 @@
+.dropdown-custom {
+    transition: all 0.2s ease;
+}
+
+.dropdown-custom:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    transform: translateX(3px);
+
+}
+
+.theme-icon {
+    transition: transform 0.4s ease, opacity 0.3s ease;
+}
+
+.theme-icon.rotate {
+    transform: rotate(180deg) scale(1.2);
+    opacity: 0.7;
+}
+
+.hdr-icon-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--bs-secondary-bg);
+    border: 1px solid var(--bs-border-color);
+    color: var(--bs-body-color);
+    transition: all 0.3s ease;
+}
+
+.hdr-icon-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+    color: var(--bs-body-color);
+}
+
+/* Smaller variant for mobile (34 → 40px) */
+.hdr-icon-btn-sm {
+    width: 40px;
+    height: 40px;
+}
+
+/* ── Cart Badge ── */
+.hdr-cart-badge {
+    top: -4px;
+    right: -4px;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 5px;
+    border-radius: 50px;
+    background: #e24b4a;
+    border: 2px solid var(--bs-body-bg);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Smaller badge for mobile */
+.hdr-cart-badge-sm {
+    min-width: 18px;
+    height: 18px;
+    padding: 0 4px;
+    font-size: 10px;
+}
+
+/* ── User Dropdown Button ── */
+.hdr-user-btn {
+    padding: 8px 12px;
+    border-radius: 50px;
+    background: var(--bs-secondary-bg);
+    border: 1px solid var(--bs-border-color) !important;
+    color: var(--bs-body-color);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.hdr-user-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* ── User Avatar ── */
+.hdr-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    color: #fff;
+    font-weight: 600;
+    font-size: 13px;
+    flex-shrink: 0;
+}
+
+/* ── User Name ── */
+.hdr-user-name {
+    max-width: 100px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--bs-body-color);
+}
+
+/* ── Dropdown Menu ── */
+.hdr-dropdown {
+    min-width: 220px;
+    z-index: 1050;
+    --bs-dropdown-link-active-bg: rgba(var(--bs-primary-rgb), 0.12);
+    --bs-dropdown-link-active-color: var(--bs-body-color);
+    --bs-dropdown-link-hover-bg: rgba(var(--bs-primary-rgb), 0.08);
+}
+
+/* ── Login Link ── */
+.hdr-login-link {
+    height: 38px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--bs-body-color);
+    text-decoration: none;
+    border: 1px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.hdr-login-link:hover {
+    background: var(--bs-secondary-bg);
+    border-color: var(--bs-border-color);
+    color: var(--bs-body-color);
+}
+
+/* ── Register Link ── */
+.hdr-register-link {
+    height: 38px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #fff;
+    text-decoration: none;
+    background: linear-gradient(135deg, #4facfe, #87e7a1);
+    border: 1px solid transparent;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 8px rgba(79, 172, 254, 0.3);
+}
+
+.hdr-register-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(79, 172, 254, 0.4);
+    color: #fff;
+}
+
+.menu-card__img-wrap {
+  height: 180px;
+}
+
+.menu-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

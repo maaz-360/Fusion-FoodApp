@@ -1,0 +1,73 @@
+
+
+/* Light theme (default) */
+:root {
+  --category-bg: #fff3e6;          /* soft orange */
+  --category-text: #ff7a00;
+  --category-border: #ff7a00;
+}
+
+/* Dark theme */
+[data-bs-theme="dark"] {
+  --category-bg: rgba(255, 122, 0, 0.2);
+  --category-text: #ff9a3c;        /* slightly brighter for dark */
+  --category-border: rgba(255, 122, 0, 0.6);
+}
+
+
+/* Overlay */
+.custom-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(3px); /* 🔥 modern blur */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1050;
+}
+
+/* Modal box */
+.custom-modal-modern {
+  background: var(--bs-body-bg);
+  padding: 24px 20px;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 320px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  animation: modalFade 0.25s ease;
+}
+
+/* Icon circle */
+.modal-icon {
+  width: 50px;
+  height: 50px;
+  margin: 0 auto;
+  border-radius: 50%;
+  background: rgba(255, 122, 0, 0.1);
+  color: #ff7a00;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+/* Animation */
+@keyframes modalFade {
+  from {
+    transform: translateY(10px) scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+
+
+

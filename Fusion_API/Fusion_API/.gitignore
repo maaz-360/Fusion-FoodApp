@@ -1,0 +1,17 @@
+﻿# Build folders
+bin/
+obj/
+
+# Visual Studio files
+.vs/
+*.user
+*.suo
+
+# Logs
+*.log
+
+# Environment / secrets
+appsettings.Development.json
+
+# Node
+node_modules/
