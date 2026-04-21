@@ -33,76 +33,60 @@ function MenuItemTable({ menuItems, isLoading, error, onDelete, onEdit }) {
   }
 
   return (
-    <>
-      <div className="table-responsive">
-        <table className="table table-hover">
-          <thead className="table-dark">
-            <tr>
-              <th>Sr.</th>
-              <th>Image</th>
-              <th>Name</th>
-              <th>Category</th>
-              <th>Price</th>
-              <th>Special Tag</th>
-              <th>Actions</th>
+   <div
+      className="flex-grow-1 overflow-auto"
+      style={{ height: 0 }}
+    >
+      <table className="table table-hover mb-0">
+        <thead
+          className="table-dark"
+          style={{ position: "sticky", top: 0, zIndex: 1 }}
+        >
+          <tr>
+            <th>Sr.</th>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Special Tag</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {menuItems.map((item, index) => (
+            <tr key={item.id}>
+              <td>{index + 1}</td>
+              <td>
+                <img
+                  src={`${API_BASE_URL}/${item.image}`}
+                  className="rounded"
+                  style={{ width: "50px", height: "50px", objectFit: "cover" }}
+                  onError={(e) => { e.target.src = "https://placehold.co/100"; }}
+                />
+              </td>
+              <td>
+                <strong>{item.name}</strong>
+                <br />
+                <small className="text-muted">{item.description}</small>
+              </td>
+              <td><span className="badge bg-secondary">{item.category}</span></td>
+              <td><strong>${item.price.toFixed(2)}</strong></td>
+              <td><span className="badge bg-warning">{item.specialTag}</span></td>
+              <td>
+                <div className="btn-group" role="group">
+                  <button onClick={() => onEdit(item)} className="btn btn-sm btn-outline-success" title="Edit">
+                    <i className="bi bi-pencil"></i>
+                  </button>
+                  <button onClick={() => onDelete(item)} className="btn btn-sm btn-outline-danger" title="Delete">
+                    <i className="bi bi-trash"></i>
+                  </button>
+                </div>
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            {menuItems.map((item, index) => (
-              <tr key={item.id}>
-                <td>{index + 1}</td>
-                <td>
-                  <img
-                    src={`${API_BASE_URL}/${item.image}`}
-                    className="rounded"
-                    style={{
-                      width: "50px",
-                      height: "50px",
-                      objectFit: "cover",
-                    }}
-                    onError={(e) => {
-                      e.target.src = "https://placehold.co/100";
-                    }}
-                  />
-                </td>
-                <td>
-                  <strong>{item.name}</strong>
-                  <br />
-                  <small className="text-muted">{item.description}</small>
-                </td>
-                <td>
-                  <span className="badge bg-secondary">{item.category}</span>
-                </td>
-                <td>
-                  <strong>${item.price.toFixed(2)}</strong>
-                </td>
-                <td>
-                  <span className="badge bg-warning ">{item.specialTag}</span>
-                </td>
-                <td>
-                  <div className="btn-group" role="group">
-                    <button
-                      onClick={() => onEdit(item)}
-                      className="btn btn-sm btn-outline-success"
-                      title="Edit"
-                    >
-                      <i className="bi bi-pencil"></i>
-                    </button>
-                    <button
-                      onClick={() => onDelete(item)}
-                      className="btn btn-sm btn-outline-danger"
-                      title="Delete"
-                    >
-                      <i className="bi bi-trash"></i>
-                    </button>
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 }
 

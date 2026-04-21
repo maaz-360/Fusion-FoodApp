@@ -128,10 +128,10 @@ namespace Fusion_API.Migrations
                         new
                         {
                             Id = 1,
-                            Category = "Dessert",
+                            Category = "Starters",
                             Description = "Fusc tincidunt maximus Leo",
                             Image = "images/carrot.jpg",
-                            Name = "Carrot Love",
+                            Name = "Grilled Carrots",
                             Price = 7.9900000000000002,
                             SpecialTag = ""
                         },
@@ -183,7 +183,7 @@ namespace Fusion_API.Migrations
                             Image = "images/Pepperoni_Pizza.jpg",
                             Name = "Pepperoni Pizza",
                             Price = 11.49,
-                            SpecialTag = "Chef Special"
+                            SpecialTag = "Chef's Special"
                         },
                         new
                         {

@@ -150,37 +150,46 @@ function MenuItemMangement() {
 
     <>
 
-      <div className="container-fluid p-4 mx-3">
-        <div className="row mb-4">
-          <div className="col">
-            <div className="d-flex justify-content-between align-items-center">
-              <div>
-                <h2>Menu Item Management</h2>
-                <p className="text-muted mb-0">
-                  Manage your restaurant's menu items
-                </p>
-              </div>
-              <button className="btn btn-primary"
-                onClick={handleAddMenuItem} >
-                <i className="bi bi-plus-circle me-2"></i>
-                Add Menu Item
-              </button>
-            </div>
-          </div>
+    <div
+  className="d-flex flex-column p-4"
+  style={{ height: "calc(100vh - 130px)", overflow: "hidden" }}
+  //                              ↑ 70px navbar + 60px footer
+>  
+      {/* Header */}
+      <div className="d-flex justify-content-between align-items-center mb-4">
+        <div>
+          <h2 className="mb-0">Menu Item Management</h2>
+          <p className="text-muted mb-0">Manage your restaurant's menu items</p>
         </div>
-        <div className="row">
-          <div className="col">
-            <div className="card">
-              <div className="card-body">
-                <MenuItemTable menuItems={menuItems} isLoading={isLoading} error={error} onDelete={handleDeleteMenuItem}
-                  onEdit={handleEditMenuItem} />
-              </div>
-            </div>
-          </div>
-        </div>
-        {showModal && <MenuItemModal onClose={handlecloseModal} isSubmitting={isSubmitting} formdata={formData}
-          onSubmit={handleFormSubmit} onChange={handleInputChange} isEditing={!!selectedMenuItem} />}
+        <button className="btn btn-primary" onClick={handleAddMenuItem}>
+          <i className="bi bi-plus-circle me-2"></i>Add Menu Item
+        </button>
       </div>
+
+      {/* Card — flex-grow so it fills all remaining height */}
+      <div className="card flex-grow-1 overflow-hidden">
+        <div className="card-body d-flex flex-column overflow-hidden p-0">
+          <MenuItemTable
+            menuItems={menuItems}
+            isLoading={isLoading}
+            error={error}
+            onDelete={handleDeleteMenuItem}
+            onEdit={handleEditMenuItem}
+          />
+        </div>
+      </div>
+
+      {showModal && (
+        <MenuItemModal
+          onClose={handlecloseModal}
+          isSubmitting={isSubmitting}
+          formdata={formData}
+          onSubmit={handleFormSubmit}
+          onChange={handleInputChange}
+          isEditing={!!selectedMenuItem}
+        />
+      )}
+    </div>
     </>
   )
 }
