@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { API_BASE_URL, ROUTES } from '../../utility/constant'
 import { useNavigate, Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { addItem, removeFromCart, updateQuantity, clearCart } from '../../store/slice/cartSlice'
+import { removeFromCart, updateQuantity, clearCart } from '../../store/slice/cartSlice'
 // import { toast } from 'react-toastify'
 import toast from "react-hot-toast";
 import { useCreateOrderMutation } from '../../store/api/ordersApi'

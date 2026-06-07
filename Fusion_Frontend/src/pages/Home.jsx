@@ -3,7 +3,7 @@ import { useGetMenuItemsQuery } from '../store/api/menuItemsApi';
 import { API_BASE_URL, CATEGORY, ROUTES, SPECIAL_TAG } from '../utility/constant';
 import { useState } from 'react';
 import { useDispatch,useSelector } from 'react-redux';
-import { addItem, addToCart } from '../store/slice/cartSlice';
+import { addToCart } from '../store/slice/cartSlice';
 // import { toast } from 'react-toastify';
 import toast from "react-hot-toast";
 import Carousel from '../components/ui/Carousel';

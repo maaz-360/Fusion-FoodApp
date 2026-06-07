@@ -8,7 +8,7 @@ import Checkout from "../pages/cart/Checkout";
 import Register from "../pages/auth/Register";
 
 import { ROLES, ROUTES } from "../utility/constant";
-import MenuItemDetails from "../pages/menu/menuItemDetails";
+import MenuItemDetails from "../pages/menu/MenuItemDetails";
 import RoleBasedRoutes from "./RoleBasedRoutes";
 import OrderConfimration from "../pages/order/OrderConfimration";
 
