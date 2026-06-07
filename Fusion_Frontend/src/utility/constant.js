@@ -1,5 +1,3 @@
-
-
 export const ROUTES = {
     HOME: "/",
     LOGIN: "/login",
@@ -12,7 +10,7 @@ export const ROUTES = {
     MENU_DETAIL : "/menu/:id"
 }
 
-export const API_BASE_URL = "https://localhost:7203"
+export const API_BASE_URL = "https://fusion-foodapp-production.up.railway.app"
 
 export const CATEGORY = ["Starters", "Main Course", "Dessert", "Beverage", "Fast Food", ];
 
