@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { baseApi } from "./api/baseAPI";
+import { baseApi } from "./api/baseApi";
 import authReducer from "./slice/authSlice"
 import cartReducer from "./slice/cartSlice"
 import themeReducer from "./slice/themeSlice"
