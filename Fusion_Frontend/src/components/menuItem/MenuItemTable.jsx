@@ -70,7 +70,7 @@ function MenuItemTable({ menuItems, isLoading, error, onDelete, onEdit }) {
                 <small className="text-muted">{item.description}</small>
               </td>
               <td><span className="badge bg-secondary">{item.category}</span></td>
-              <td><strong>${item.price.toFixed(2)}</strong></td>
+              <td><strong>₹{item.price.toFixed(2)}</strong></td>
               <td><span className="badge bg-warning">{item.specialTag}</span></td>
               <td>
                 <div className="btn-group" role="group">
