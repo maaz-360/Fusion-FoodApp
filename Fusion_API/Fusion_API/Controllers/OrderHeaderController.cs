@@ -83,7 +83,7 @@ namespace Fusion_API.Controllers
                         PickUpEmail = orderHeaderDTO.PickUpEmail,
                         PickUpPhoneNumber = orderHeaderDTO.PickUpPhoneNumber,
                         PickUpName = orderHeaderDTO.PickUpName,
-                        OrderDate = DateTime.Now,
+                        OrderDate = DateTime.UtcNow,
                         OrderTotal = orderHeaderDTO.OrderTotal,
                         Status = SD.status_confirmed,
                         TotalItem = orderHeaderDTO.TotalItem,
