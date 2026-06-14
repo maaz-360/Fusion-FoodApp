@@ -106,7 +106,7 @@ namespace Fusion_API.Controllers
                         _response.ErrorMessages.Add("Invalid Credentials");
                         return BadRequest(_response);
                     }
-                    //JWT Starts
+                    //JWT :
                     var roles = await _userManager.GetRolesAsync(userFromDb);
                     var claims = new[]
                     {

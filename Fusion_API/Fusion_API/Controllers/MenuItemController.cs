@@ -25,12 +25,6 @@ namespace Fusion_API.Controllers
         [HttpGet]
         public IActionResult GetMenuItems()
         {
-            // ADD THESE LINES
-            Console.WriteLine("=================================");
-            Console.WriteLine($"WebRootPath: {_env.WebRootPath}");
-            Console.WriteLine($"CurrentDirectory: {Directory.GetCurrentDirectory()}");
-            Console.WriteLine($"ContentRootPath: {_env.ContentRootPath}");
-            Console.WriteLine("=================================");
             List<MenuItem> menuItems = _db.MenuItems.ToList();
 
             List<OrderDetail> orderDetailsWithRatings = _db.OrderDetails.Where(u => u.Rating != null).ToList();
@@ -71,17 +65,73 @@ namespace Fusion_API.Controllers
         }
 
         [HttpPost]
-        public ActionResult<ApiResponse> CreateMenuItem([FromForm] MenuItemCreateDTO menuItemCreateDTO)
+        public async Task<ActionResult<ApiResponse>> CreateMenuItem([FromForm] MenuItemCreateDTO menuItemCreateDTO)
         {
-            var debugInfo = new
+            try
             {
-                WebRootPath = _env.WebRootPath,
-                CurrentDirectory = Directory.GetCurrentDirectory(),
-                BaseDirectory = AppDomain.CurrentDomain.BaseDirectory,
-                ContentRootPath = _env.ContentRootPath
-            };
+                if (ModelState.IsValid)
+                {
+                    if (menuItemCreateDTO.File == null || menuItemCreateDTO.File.Length == 0)
+                    {
+                        _response.IsSuccess = false;
+                        _response.StatusCode = HttpStatusCode.BadRequest;
+                        _response.ErrorMessages = ["File is required"];
+                        return BadRequest(_response);
+                    }
 
-            return Ok(debugInfo);
+                    var webRootPath = _env.WebRootPath;
+                    if (string.IsNullOrEmpty(webRootPath))
+                    {
+                        webRootPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
+                    }
+
+                    var imagesPath = Path.Combine(_env.WebRootPath, "images");
+                    if (!Directory.Exists(imagesPath))
+                    {
+                        Directory.CreateDirectory(imagesPath);
+                    }
+                    var filePath = Path.Combine(imagesPath, menuItemCreateDTO.File.FileName);
+                    if (System.IO.File.Exists(filePath))
+                    {
+                        System.IO.File.Delete(filePath);
+                    }
+                    //uploading the image
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await menuItemCreateDTO.File.CopyToAsync(stream);
+                    }
+
+                    MenuItem menuItem = new()
+                    {
+                        Name = menuItemCreateDTO.Name,
+                        Description = menuItemCreateDTO.Description,
+                        Price = menuItemCreateDTO.Price,
+                        Category = menuItemCreateDTO.Category,
+                        SpecialTag = menuItemCreateDTO.SpecialTag,
+                        Image = "images/" + menuItemCreateDTO.File.FileName
+                    };
+
+                    _db.MenuItems.Add(menuItem);
+                    await _db.SaveChangesAsync();
+
+                    _response.Result = menuItemCreateDTO;
+                    _response.StatusCode = HttpStatusCode.Created;
+                    return CreatedAtRoute("GetMenuItem", new { id = menuItem.Id }, _response);
+
+                }
+                else
+                {
+                    _response.IsSuccess = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                _response.IsSuccess = false;
+                _response.ErrorMessages
+                     = [ex.ToString()];
+            }
+
+            return BadRequest(_response);
         }
 
         [HttpPut("{id}")]
@@ -211,4 +261,5 @@ namespace Fusion_API.Controllers
             return BadRequest(_response);
         }
     }
+    // test redeploy
 }
