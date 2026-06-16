@@ -30,9 +30,9 @@ const AppRoutes = () => (
     <Route
       path={ROUTES.CART}
       element={
-        <RoleBasedRoutes>
+     
           <Cart />
-        </RoleBasedRoutes>
+       
       }
     />
     <Route path={ROUTES.CHECKOUT} element={<Checkout />} />
