@@ -632,7 +632,7 @@ function Home() {
           {/* ── Why Choose MangoFusion ── */}
           <section className="why-section py-4 py-md-5 border-top mt-2">
             <div className="text-center mb-4">
-              <h2 className="why-section__title fw-bold mb-1">Why Choose Fusion?</h2>
+              <h2 className="why-section__title fw-bold mb-1">Why Choose Fusion Hub?</h2>
               <p className="text-muted mb-0 small">Freshness, flavour, and a premium ordering experience.</p>
             </div>
  

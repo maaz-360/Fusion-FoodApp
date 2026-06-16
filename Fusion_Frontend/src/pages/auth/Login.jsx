@@ -65,7 +65,7 @@ function Login() {
                   style={{ fontSize: "4rem" }}
                 ></i>
               </div>
-              <h2 className="fw-bold mb-3">Welcome to MangoFusion</h2>
+              <h2 className="fw-bold mb-3">Welcome to Fusion Hub</h2>
               <p className="text-muted mb-4">
                 Sign in to explore fresh flavors, manage your cart, and place
                 your orders seamlessly.

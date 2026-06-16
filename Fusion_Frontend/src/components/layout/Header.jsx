@@ -79,7 +79,7 @@ const [activeModal, setActiveModal] = useState(null);
         {/* ── Brand ── */}
         <NavLink to={ROUTES.HOME} className="navbar-brand d-flex align-items-center gap-2">
           <i className="bi bi-fire text-primary fs-4"></i>
-          <span className="fw-bold">Fusion</span>
+          <span className="fw-bold">Fusion Hub</span>
         </NavLink>
 
         {/* ── Mobile: right-side controls ── */}

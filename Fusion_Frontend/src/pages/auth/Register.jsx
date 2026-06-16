@@ -73,7 +73,7 @@ function register() {
                   style={{ fontSize: "4rem" }}
                 ></i>
               </div>
-              <h2 className="fw-bold mb-3">Join MangoFusion</h2>
+              <h2 className="fw-bold mb-3">Join Fusion Hub</h2>
               <p className="text-muted mb-4">
                 Create your account to discover fresh dishes and manage your
                 orders.
