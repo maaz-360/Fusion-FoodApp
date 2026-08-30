@@ -19,7 +19,7 @@ namespace Fusion_API.Controllers
         {
             _db = db;
             _response = new ApiResponse();
-            _env = env;
+            _env = env;  
         }
 
         [HttpGet]
