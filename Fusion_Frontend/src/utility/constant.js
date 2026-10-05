@@ -11,7 +11,7 @@ export const ROUTES = {
 }
 
 
-export const API_BASE_URL = "https://fusion-foodapp-production.up.railway.app"
+export const API_BASE_URL = "https://fusion-api-6p5h.onrender.com"
 
 export const CATEGORY = ["Starters", "Main Course", "Dessert", "Beverage", "Fast Food", ];
 
