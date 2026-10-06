@@ -14,12 +14,22 @@ function MenuItemDetails() {
   const itemId = parseInt(id);
   const isValidItemId = !isNaN(itemId) && itemId > 0;
   const [quantity, setQuantity] = useState(1);
+  const [activeImage, setActiveImage] = useState(0);
+  
   const {
     data: selectedMenuItem,
     isLoading,
     error,
     refetch
   } = useGetMenuItemByIdQuery(id);
+
+   const productImages = [
+  selectedMenuItem?.image
+    ? `${API_BASE_URL}/${selectedMenuItem.image}`
+    : "https://placehold.co/600x400?text=Product+Image",
+  "https://placehold.co/600x400?text=Product+Image+2",
+  "https://placehold.co/600x400?text=Product+Image+3",
+];
 
 const  handleAddToCart=()=>{
   dispatch(addToCart({
@@ -30,7 +40,7 @@ const  handleAddToCart=()=>{
     quantity:quantity,
   }))
   toast.success(`${selectedMenuItem.name} added to cart`);
-}
+  } 
 
   if (!isValidItemId) {
     return (
@@ -95,31 +105,101 @@ const  handleAddToCart=()=>{
 
   <div className="row g-4">
     {/* Product Image */}
-    <div className="col-lg-5">
-      <div className="position-relative">
-        <div className="rounded-4 overflow-hidden shadow-lg border bg-body position-relative">
+   
+{/* Product Image Slider */}
+<div className="col-lg-5">
+  <div className="position-relative">
+
+    {/* Main Image */}
+    <div className="rounded-4 overflow-hidden shadow-lg border bg-body position-relative">
+      <img
+        src={productImages[activeImage]}
+        alt={`${selectedMenuItem.name} - Image ${activeImage + 1}`}
+        className="img-fluid"
+        style={{
+          height: "350px",
+          width: "100%",
+          objectFit: "cover",
+          transition: "all 0.3s ease",
+        }}
+      />
+
+      {/* Special Tag */}
+      {selectedMenuItem.specialTag && (
+        <span className="badge bg-danger position-absolute top-0 start-0 m-3 px-3 py-2 rounded-pill">
+          {selectedMenuItem.specialTag}
+        </span>
+      )}
+
+      {/* Previous Arrow */}
+      <button
+        type="button"
+        className="btn btn-light rounded-circle shadow position-absolute top-50 start-0 translate-middle-y ms-3"
+        onClick={() =>
+          setActiveImage(
+            (activeImage - 1 + productImages.length) %
+              productImages.length
+          )
+        }
+        aria-label="Previous image"
+      >
+        <i className="bi bi-chevron-left"></i>
+      </button>
+
+      {/* Next Arrow */}
+      <button
+        type="button"
+        className="btn btn-light rounded-circle shadow position-absolute top-50 end-0 translate-middle-y me-3"
+        onClick={() =>
+          setActiveImage((activeImage + 1) % productImages.length)
+        }
+        aria-label="Next image"
+      >
+        <i className="bi bi-chevron-right"></i>
+      </button>
+
+      {/* Image Counter */}
+      <span className="badge bg-dark bg-opacity-75 position-absolute bottom-0 end-0 m-3">
+        {activeImage + 1} / {productImages.length}
+      </span>
+    </div>
+
+    {/* Thumbnail Images */}
+    <div className="d-flex gap-3 mt-3">
+      {productImages.map((image, index) => (
+        <button
+          key={index}
+          type="button"
+          onClick={() => setActiveImage(index)}
+          className={`p-1 rounded-3 overflow-hidden bg-body ${
+            activeImage === index
+              ? "border border-primary border-2 shadow"
+              : "border"
+          }`}
+          style={{
+            width: "33.33%",
+            cursor: "pointer",
+          }}
+          aria-label={`View image ${index + 1}`}
+          aria-pressed={activeImage === index}
+        >
           <img
-            className="img-fluid"
-            src={`${API_BASE_URL}/${selectedMenuItem.image}`}
+            src={image}
+            alt={`Product thumbnail ${index + 1}`}
+            className="img-fluid rounded-2"
             style={{
-              height: "350px",
               width: "100%",
+              height: "85px",
               objectFit: "cover",
             }}
-            onError={(e) => {
-              e.target.src = "https://placehold.co/100";
-            }}
           />
-          {selectedMenuItem.specialTag && (
-            <div className="position-absolute top-0 start-0 m-2">
-              <span className="badge bg-danger px-2 py-1 rounded-pill shadow-sm">
-                {selectedMenuItem.specialTag}
-              </span>
-            </div>
-          )}
-        </div>
-      </div>
+        </button>
+      ))}
     </div>
+
+  </div>
+</div>
+
 
     {/* Product Details */}
     <div className="col-lg-7">
