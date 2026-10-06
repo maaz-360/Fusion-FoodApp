@@ -104,7 +104,6 @@ const  handleAddToCart=()=>{
   </nav>
 
   <div className="row g-4">
-    {/* Product Image */}
    
 {/* Product Image Slider */}
 <div className="col-lg-5">
