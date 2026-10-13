@@ -9,9 +9,6 @@ import MyOrderModel from '../orders/MyOrderModel';
 import LoginRequiredModal from '../ui/LoginRequiredModal';
 
 
-
-
-
 function Header() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
